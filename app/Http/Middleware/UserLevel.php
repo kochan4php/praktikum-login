@@ -17,7 +17,7 @@ class UserLevel
    */
   public function handle(Request $request, Closure $next, ...$level)
   {
-    abort_if(!in_array(Auth::user()->level_user->nama_level, $level), 403);
+    abort_if(!in_array(Auth::user()->level_user->id, $level), 403);
     return $next($request);
   }
 }

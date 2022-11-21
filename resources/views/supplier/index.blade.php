@@ -11,9 +11,11 @@
       <div class="card table-responsive">
         <div class="card-header d-flex justify-content-between">
           <h1>Data Supplier</h1>
-          <a href="{{ route('supplier.create') }}" class="btn btn-primary d-flex align-items-center">
-            <span>Tambah Supplier</span>
-          </a>
+          @can('kelola-supplier')
+            <a href="{{ route('supplier.create') }}" class="btn btn-primary d-flex align-items-center">
+              <span>Tambah Supplier</span>
+            </a>
+          @endcan
         </div>
         <div class="card-body">
           <table class="table table-bordered table-striped border-dark">
@@ -23,7 +25,9 @@
                 <th class="text-nowrap text-center" scope="col">Nama Supplier</th>
                 <th class="text-nowrap text-center" scope="col">No Telepon</th>
                 <th class="text-nowrap text-center" scope="col">Alamat</th>
-                <th class="text-nowrap text-center" scope="col">Aksi</th>
+                @can('kelola-supplier')
+                  <th class="text-nowrap text-center" scope="col">Aksi</th>
+                @endcan
               </tr>
             </thead>
             <tbody>
@@ -33,12 +37,14 @@
                   <td class="text-nowrap text-center">{{ $item->nama_supplier }}</td>
                   <td class="text-nowrap text-center">{{ $item->no_telp }}</td>
                   <td class="text-nowrap text-center">{{ $item->alamat }}</td>
-                  <td class="text-nowrap text-center">
-                    <div class="btn-group">
-                      <a href="{{ route('supplier.edit', $item->id) }}" class="btn btn-sm btn-warning">Sunting</a>
-                      <a href="{{ route('supplier.destroy', $item->id) }}" class="btn btn-sm btn-danger">Hapus</a>
-                    </div>
-                  </td>
+                  @can('kelola-supplier')
+                    <td class="text-nowrap text-center">
+                      <div class="btn-group">
+                        <a href="{{ route('supplier.edit', $item->id) }}" class="btn btn-sm btn-warning">Sunting</a>
+                        <a href="{{ route('supplier.destroy', $item->id) }}" class="btn btn-sm btn-danger">Hapus</a>
+                      </div>
+                    </td>
+                  @endcan
                 </tr>
               @endforeach
             </tbody>

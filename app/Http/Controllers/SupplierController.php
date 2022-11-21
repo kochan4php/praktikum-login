@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware(['auth', 'level:1,2'])->except(['index', 'show']);
+  }
   /**
    * Display a listing of the resource.
    *
@@ -25,6 +29,7 @@ class SupplierController extends Controller
    */
   public function create()
   {
+    $this->authorize('kelola-supplier');
     return view('supplier.tambah');
   }
 
@@ -36,7 +41,7 @@ class SupplierController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $this->authorize('kelola-supplier');
   }
 
   /**
@@ -58,6 +63,7 @@ class SupplierController extends Controller
    */
   public function edit($id)
   {
+    $this->authorize('kelola-supplier');
     return view('supplier.edit');
   }
 
@@ -70,7 +76,7 @@ class SupplierController extends Controller
    */
   public function update(Request $request, $id)
   {
-    //
+    $this->authorize('kelola-supplier');
   }
 
   /**
@@ -81,6 +87,6 @@ class SupplierController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $this->authorize('kelola-supplier');
   }
 }
