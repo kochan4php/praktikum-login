@@ -22,3 +22,4 @@ Route::redirect('/', '/supplier');
 Route::resource('/supplier', SupplierController::class);
 Route::get('/login', [AuthController::class, 'index'])->name('login.index');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login.authenticate');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

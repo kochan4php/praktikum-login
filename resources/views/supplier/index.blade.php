@@ -3,6 +3,11 @@
 @section('container')
   <div class="row">
     <div class="col">
+      <h1 class="text-center">{{ Auth::user()->username }} sebagai blablabla</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
       <div class="card table-responsive">
         <div class="card-header d-flex justify-content-between">
           <h1>Data Supplier</h1>
@@ -42,6 +47,12 @@
         <div class="px-3">
           {{ $supplier->links() }}
         </div>
+      </div>
+      <div class="my-3">
+        <form action="{{ route('logout') }}" method="post">
+          @csrf
+          <button type="submit">Keluar ah</button>
+        </form>
       </div>
     </div>
   </div>
