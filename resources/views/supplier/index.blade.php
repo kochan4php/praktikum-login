@@ -3,7 +3,7 @@
 @section('container')
   <div class="row">
     <div class="col">
-      <h1 class="text-center">{{ Auth::user()->username }} sebagai blablabla</h1>
+      <h1 class="text-center">{{ Auth::user()->username }} sebagai {{ Auth::user()->level_user->nama_level }}</h1>
     </div>
   </div>
   <div class="row">

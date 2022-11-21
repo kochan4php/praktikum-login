@@ -18,6 +18,7 @@ return new class extends Migration
       $table->string('username')->unique();
       $table->string('email')->unique();
       $table->string('password');
+      $table->foreignId('level_id')->constrained('level_user')->cascadeOnDelete();
       $table->rememberToken();
       $table->timestamps();
     });
