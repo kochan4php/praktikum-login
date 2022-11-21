@@ -12,15 +12,15 @@
             @csrf
             <div class="mb-3">
               <label for="nama_supplier" class="form-label">Nama Supplier</label>
-              <input type="email" class="form-control" id="nama_supplier" name="nama_supplier">
+              <input type="text" class="form-control" id="nama_supplier" name="nama_supplier">
             </div>
             <div class="mb-3">
               <label for="no_telp" class="form-label">No. Telepon</label>
               <input type="number" class="form-control" id="no_telp" name="no_telp">
             </div>
             <div class="mb-3">
-              <label for="no_telp" class="form-label">keterangan</label>
-              <textarea type="number" class="form-control" id="no_telp" name="no_telp"></textarea>
+              <label for="alamat" class="form-label">Alamat</label>
+              <textarea type="number" class="form-control" id="alamat" name="alamat"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>

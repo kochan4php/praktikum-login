@@ -9,6 +9,8 @@ class Supplier extends Model
 {
   use HasFactory;
 
+  protected $guarded = ['id'];
+
   protected $table = 'supplier';
   public $timestamps = false;
 }

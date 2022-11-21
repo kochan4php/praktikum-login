@@ -6,6 +6,24 @@
       <h1 class="text-center">{{ Auth::user()->username }} sebagai {{ Auth::user()->level_user->nama_level }}</h1>
     </div>
   </div>
+  @if (session()->has('sukses'))
+    <div class="row">
+      <div class="col">
+        <div class="alert alert-success">
+          {{ session('sukses') }}
+        </div>
+      </div>
+    </div>
+  @endif
+  @if (session()->has('error'))
+    <div class="row">
+      <div class="col">
+        <div class="alert alert-danger">
+          {{ session('error') }}
+        </div>
+      </div>
+    </div>
+  @endif
   <div class="row">
     <div class="col">
       <div class="card table-responsive">
@@ -40,8 +58,13 @@
                   @can('kelola-supplier')
                     <td class="text-nowrap text-center">
                       <div class="btn-group">
-                        <a href="{{ route('supplier.edit', $item->id) }}" class="btn btn-sm btn-warning">Sunting</a>
-                        <a href="{{ route('supplier.destroy', $item->id) }}" class="btn btn-sm btn-danger">Hapus</a>
+                        <a href="{{ route('supplier.edit', $item->id) }}"
+                          class="btn btn-sm btn-warning rounded-0">Sunting</a>
+                        <form action="{{ route('supplier.destroy', $item->id) }}" class="d-inline-block" method="post">
+                          @csrf
+                          @method('delete')
+                          <button type="submit" class="btn btn-sm btn-danger rounded-0">Hapus</button>
+                        </form>
                       </div>
                     </td>
                   @endcan

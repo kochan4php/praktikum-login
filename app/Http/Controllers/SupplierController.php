@@ -42,17 +42,17 @@ class SupplierController extends Controller
   public function store(Request $request)
   {
     $this->authorize('kelola-supplier');
-  }
-
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function show($id)
-  {
-    //
+    try {
+      $validated_data = $request->validate([
+        'nama_supplier' => 'required',
+        'no_telp' => 'required|numeric',
+        'alamat' => 'required'
+      ]);
+      Supplier::create($validated_data);
+      return to_route('supplier.index')->with('sukses', 'Berhasil Tambah Data');
+    } catch (\Exception $e) {
+      return to_route('supplier.index')->with('error', $e->getMessage());
+    }
   }
 
   /**
@@ -64,7 +64,8 @@ class SupplierController extends Controller
   public function edit($id)
   {
     $this->authorize('kelola-supplier');
-    return view('supplier.edit');
+    $supplier = Supplier::whereId($id)->first();
+    return view('supplier.edit', compact('supplier'));
   }
 
   /**
@@ -77,6 +78,17 @@ class SupplierController extends Controller
   public function update(Request $request, $id)
   {
     $this->authorize('kelola-supplier');
+    try {
+      $validated_data = $request->validate([
+        'nama_supplier' => 'required',
+        'no_telp' => 'required|numeric',
+        'alamat' => 'required'
+      ]);
+      Supplier::find($id)->update($validated_data);
+      return to_route('supplier.index')->with('sukses', 'Berhasil Ubah Data');
+    } catch (\Exception $e) {
+      return to_route('supplier.index')->with('error', $e->getMessage());
+    }
   }
 
   /**
@@ -88,5 +100,7 @@ class SupplierController extends Controller
   public function destroy($id)
   {
     $this->authorize('kelola-supplier');
+    Supplier::whereId($id)->delete();
+    return to_route('supplier.index')->with('sukses', 'Berhasil Hapus Data');
   }
 }

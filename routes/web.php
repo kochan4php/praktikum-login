@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/supplier');
 
 Route::get('/list-supplier', [SupplierController::class, 'index'])->middleware('auth');
-Route::resource('/supplier', SupplierController::class);
+Route::resource('/supplier', SupplierController::class)->except('show');
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login.authenticate');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
