@@ -15,9 +15,9 @@ class UserLevel
    * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
    * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
    */
-  public function handle(Request $request, Closure $next, string $level)
+  public function handle(Request $request, Closure $next, ...$level)
   {
-    abort_if(Auth::user()->level_user->nama_level !== $level, 403);
+    abort_if(!in_array(Auth::user()->level_user->nama_level, $level), 403);
     return $next($request);
   }
 }
